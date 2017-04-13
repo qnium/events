@@ -1,4 +1,4 @@
-{
+{ "name": "qnium-events"
   "devDependencies": {
     "mocha": "^3.2.0",
     "should": "^11.2.1"

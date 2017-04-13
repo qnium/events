@@ -6,9 +6,10 @@ var EventContainer = new SchemaObject(
         handlers : { type: Array, arrayType: Object}
     }, {
         methods: {
-            send: function()
+            send: function(ev)
             {
-                this.handlers.forEach( function(handler) { handler( this.event ); });
+                //ev = new (this.event)(ev);
+				this.handlers.forEach( function(handler) { handler( ev ); });
             },
             
             /*
@@ -29,26 +30,26 @@ var EventContainer = new SchemaObject(
 
 var registry = new Array();
 
-
 function event(event)
 {
     var container = new EventContainer();
 
-    if (event === 'undefined')
+    if (event === undefined)
         return container;
 
     var found = false;
     
-    registry.forEach( function(element) { 
-        if (element.event == event)
+    registry.forEach( function(element) {
+        if (element.event == event) {
             found = true;
             container = element; 
-        } );
+        }
+    });
     
-    if (!found)
+	if (!found)
     {
-        container = new EventContainer({ event: event })
-        registry.push();
+		container = new EventContainer({ event: event })
+        registry.push(container);
     }
 
     return container;
