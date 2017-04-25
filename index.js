@@ -23,6 +23,15 @@ var EventContainer = new SchemaObject(
             handle: function(handler)
             {
                 this.handlers.push(handler);
+                let self = this;
+                let handlerRemover = function() {
+                    for(let i = 0; i < self.handlers.length; i++) {
+                        if(self.handlers[i] === handler) {
+                            delete self.handlers[i];
+                        }
+                    }
+                }
+                return handlerRemover;
             }
         }
     }
