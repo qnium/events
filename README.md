@@ -1,2 +1,2 @@
 # events
-Timy event framework for ES6 based apps
+Tiny event framework for ES5/ES6 based apps
