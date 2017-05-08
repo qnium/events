@@ -8,7 +8,11 @@ var EventContainer = new SchemaObject(
         methods: {
             send: function(ev)
             {
-                //ev = new (this.event)(ev);
+                eventObject = new (this.event)(ev); //This is to verify event schema
+                if (eventObject.isErrors())
+                {
+                    throw new Error(eventObject.getErrors().errorMessage);
+                }
 				this.handlers.forEach( function(handler) { handler( ev ); });
             },
             
@@ -23,9 +27,9 @@ var EventContainer = new SchemaObject(
             handle: function(handler)
             {
                 this.handlers.push(handler);
-                let self = this;
-                let handlerRemover = function() {
-                    for(let i = 0; i < self.handlers.length; i++) {
+                var self = this;
+                var handlerRemover = function() {
+                    for(var i = 0; i < self.handlers.length; i++) {
                         if(self.handlers[i] === handler) {
                             delete self.handlers[i];
                         }

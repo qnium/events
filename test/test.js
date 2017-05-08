@@ -31,5 +31,15 @@ describe('Events', function() {
       event(TestEventNum).send({ testNum: 3});
       event(TestEvent).send({ testData: 'test'});
     });
+
+    it('verify event schema', function()
+    {
+      (
+        function(){
+          testEvent.send( { testDataFail: 'test' });
+        }
+      ).should.throw();
+    });
+
   });
 });
