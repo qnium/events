@@ -11,7 +11,7 @@ var EventContainer = new SchemaObject(
                 eventObject = new (this.event)(ev); //This is to verify event schema
                 if (eventObject.isErrors())
                 {
-                    throw new Error(eventObject.getErrors().errorMessage);
+                    throw new Error(eventObject.getErrors()[0].errorMessage);
                 }
 				this.handlers.forEach( function(handler) { handler( ev ); });
             },
