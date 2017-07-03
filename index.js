@@ -3,7 +3,7 @@ var SchemaObject = require('schema-object');
 var EventContainer = new SchemaObject(
     {
         event : SchemaObject,
-        handlers : { type: Array, arrayType: Object}
+        handlers : { type: Array, arrayType: Function}
     }, {
         methods: {
             send: function(ev)
